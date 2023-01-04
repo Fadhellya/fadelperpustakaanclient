@@ -5,8 +5,49 @@
 package com.mycompany.fadelperpustakaanclient.model;
 public class Peminjaman {
     private Long peminjamanId;
-    private Long bukuId;
     private Long anggotaId;
-    private String tglPinjam;
-    private String tglKembali;
+    private Long bukuId;
+    private String tglpinjam;
+    private String tglkembali;
+
+    public Long getPeminjamanId() {
+        return peminjamanId;
+    }
+
+    public void setPeminjamanId(Long peminjamanId) {
+        this.peminjamanId = peminjamanId;
+    }
+
+    public Long getAnggotaId() {
+        return anggotaId;
+    }
+
+    public void setAnggotaId(Long anggotaId) {
+        this.anggotaId = anggotaId;
+    }
+
+    public Long getBukuId() {
+        return bukuId;
+    }
+
+    public void setBukuId(Long bukuId) {
+        this.bukuId = bukuId;
+    }
+
+    public String getTglpinjam() {
+        return tglpinjam;
+    }
+
+    public void setTglpinjam(String tglpinjam) {
+        this.tglpinjam = tglpinjam;
+    }
+
+    public String getTglkembali() {
+        return tglkembali;
+    }
+
+    public void setTglkembali(String tglkembali) {
+        this.tglkembali = tglkembali;
+    }
+   
 }

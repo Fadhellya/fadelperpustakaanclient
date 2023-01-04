@@ -14,7 +14,7 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
 public class PeminjamanService {
-   private final String URL = "http://localhost:8001";
+   private final String URL = "http://localhost:9003";
     
     public Peminjaman getPeminjaman(Long peminjamanId){
         Peminjaman peminjaman = Unirest.get(URL+"/buku/"+peminjamanId).asObject(Peminjaman.class).getBody();

@@ -4,9 +4,9 @@
  */
 package com.mycompany.fadelperpustakaanclient.model;
 public class Anggota {
-   private Long anggotaId;
-   private String nama;
-   private String alamat;
+    private Long anggotaId;
+    private String nama;
+    private String alamat;
 
     public Long getAnggotaId() {
         return anggotaId;
@@ -31,5 +31,5 @@ public class Anggota {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-   
+    
 }

@@ -8,6 +8,10 @@ import com.mycompany.fadelperpustakaanclient.controller.AnggotaController;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+/**
+ *
+ * @author ASUS
+ */
 public class FormAnggota extends javax.swing.JFrame {
 
     /**
@@ -18,24 +22,25 @@ public class FormAnggota extends javax.swing.JFrame {
         initComponents();
         controller = new AnggotaController(this);
         controller.bersihForm();
-        controller.viewTable();
+        controller.viewTabel();
     }
 
     public JTable getTabelAnggota() {
-        return TabelAnggota;
+        return tabelAnggota;
     }
 
-    public JTextField getTxtAnggotaAddress() {
-        return TxtAnggotaAddress;
+    public JTextField getTxtAlamat() {
+        return txtAlamat;
     }
 
     public JTextField getTxtAnggotaId() {
-        return TxtAnggotaId;
+        return txtAnggotaId;
     }
 
-    public JTextField getTxtAnggotaName() {
-        return TxtAnggotaName;
+    public JTextField getTxtNama() {
+        return txtNama;
     }
+    
     
 
     /**
@@ -50,35 +55,45 @@ public class FormAnggota extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TxtAnggotaId = new javax.swing.JTextField();
-        TxtAnggotaName = new javax.swing.JTextField();
-        TxtAnggotaAddress = new javax.swing.JTextField();
+        txtAnggotaId = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelAnggota = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelAnggota = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Angggota Id");
+        jLabel1.setText("AnggotaId");
 
         jLabel2.setText("Nama Anggota");
 
         jLabel3.setText("Alamat");
 
-        TxtAnggotaId.setText("jTextField1");
+        txtAnggotaId.setText("jTextField1");
 
-        TxtAnggotaName.setText("jTextField2");
+        txtNama.setText("jTextField2");
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaActionPerformed(evt);
+            }
+        });
 
-        TxtAnggotaAddress.setText("jTextField3");
+        txtAlamat.setText("jTextField3");
 
         btnCari.setText("Cari");
         btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCariMouseClicked(evt);
+            }
+        });
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
             }
         });
 
@@ -88,24 +103,11 @@ public class FormAnggota extends javax.swing.JFrame {
                 btnSaveMouseClicked(evt);
             }
         });
-
-        TabelAnggota.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Anggota Id", "Nama", "Alamat"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(TabelAnggota);
 
         btnUpdate.setText("Update");
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,9 +117,9 @@ public class FormAnggota extends javax.swing.JFrame {
         });
 
         btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
             }
         });
 
@@ -128,6 +130,27 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
 
+        tabelAnggota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "AnggotaId", "Nama Anggota", "Alamat"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelAnggota);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,56 +159,54 @@ public class FormAnggota extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtAnggotaName)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TxtAnggotaId, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCari)
-                                .addGap(0, 10, Short.MAX_VALUE))
-                            .addComponent(TxtAnggotaAddress)))
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancel))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(txtAnggotaId, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNama)
+                            .addComponent(txtAlamat)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancel)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TxtAnggotaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCari))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtAnggotaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TxtAnggotaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(TxtAnggotaAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnCancel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -193,30 +214,42 @@ public class FormAnggota extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        controller.deleteAnggota();
+        controller.viewTabel();
+        controller.bersihForm();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
     private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
-      controller.getAnggotaId();
+        controller.getAnggotaId();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCariMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
-      controller.saveAnggota();
-      controller.viewTable();
-      controller.bersihForm();
+        controller.saveAnggota();
+        controller.viewTabel();
+        controller.bersihForm();        // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
         controller.updateAnggota();
-        controller.viewTable();
-      controller.bersihForm();
+        controller.viewTabel();
+        controller.bersihForm();        // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateMouseClicked
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        controller.deleteAnggota();
-         controller.viewTable();
-      controller.bersihForm();
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        dispose();
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelMouseClicked
 
     /**
@@ -245,7 +278,6 @@ public class FormAnggota extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -256,10 +288,6 @@ public class FormAnggota extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelAnggota;
-    private javax.swing.JTextField TxtAnggotaAddress;
-    private javax.swing.JTextField TxtAnggotaId;
-    private javax.swing.JTextField TxtAnggotaName;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnDelete;
@@ -269,5 +297,9 @@ public class FormAnggota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelAnggota;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextField txtAnggotaId;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }

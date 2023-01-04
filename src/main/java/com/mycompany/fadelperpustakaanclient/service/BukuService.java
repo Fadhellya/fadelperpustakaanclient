@@ -13,44 +13,41 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
 public class BukuService {
-   private final String URL = "http://localhost:9002";
+    private final String URL = "http://localhost:9002";
     
     public Buku getBuku(Long bukuId){
         Buku buku = Unirest.get(URL+"/buku/"+bukuId).asObject(Buku.class).getBody();
-        if (buku!=null){
+        if (buku!=null) {
             return buku;
         }
         return null;
     }
     
     public List<Buku> getAllBuku(){
-        List<Buku> bukuList = Unirest.get(URL+"/buku/")
-                .asObject(new GenericType<List<Buku>>(){})
-                .getBody();
+        List<Buku> bukuList = Unirest.get(URL + "/buku/")
+                .asObject(new GenericType<List<Buku>> (){}).getBody();
         return bukuList;
     }
     
     public Buku saveBuku(Buku buku){
         HttpResponse<JsonNode> response = Unirest.post(URL + "/buku/")
                 .header("content-type","application/json")
-                .body(buku)
-                .asJson();
+                .body(buku).asJson();
         Gson gson = new Gson();
-        Buku a = gson.fromJson(response.getBody().toString(),Buku.class);
+        Buku a = gson.fromJson(response.getBody().toString(), Buku.class);
         return a;
     }
     
     public Buku updateBuku(Buku buku){
-        HttpResponse<JsonNode> response = Unirest.put(URL+"/buku/")
+        HttpResponse<JsonNode> response = Unirest.put(URL + "/buku/")
                 .header("content-type","application/json")
-                .body(buku)
-                .asJson();
+                .body(buku).asJson();
         Gson gson = new Gson();
-        Buku a = gson.fromJson(response.getBody().toString(),Buku.class);
+        Buku a = gson.fromJson(response.getBody().toString(), Buku.class);
         return a;
     }
     
-    public void deleteBuku (Long bukuId){
-       Unirest.delete(URL+"/buku/"+bukuId).asEmpty();
+    public void deleteBuku(Long bukuId){
+        Unirest.delete(URL + "/buku/"+bukuId).asEmpty();
     }
 }

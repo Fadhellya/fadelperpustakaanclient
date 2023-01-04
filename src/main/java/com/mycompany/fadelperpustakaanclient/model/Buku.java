@@ -7,6 +7,7 @@ public class Buku {
     private Long bukuId;
     private String kode;
     private String judul;
+    private String pengarang;
     private String penerbit;
     private String tahunTerbit;
 
@@ -34,6 +35,14 @@ public class Buku {
         this.judul = judul;
     }
 
+    public String getPengarang() {
+        return pengarang;
+    }
+
+    public void setPengarang(String pengarang) {
+        this.pengarang = pengarang;
+    }
+
     public String getPenerbit() {
         return penerbit;
     }
@@ -49,6 +58,5 @@ public class Buku {
     public void setTahunTerbit(String tahunTerbit) {
         this.tahunTerbit = tahunTerbit;
     }
-    
     
 }
